@@ -1,6 +1,9 @@
 name: 'my pipeline'
-stages:    
+stages:   
+
   - stage: test    
+    pool:      
+      vmImage: 'macOS-latest'
     jobs:
       - job: myJob
         steps:
