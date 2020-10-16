@@ -1,10 +1,20 @@
-trigger:
-- master
-name: $(Date:yyyyMMdd)$(Rev:.r)
-
-jobs:
-- template: 'django-basic/azure-pipelines.yml'
-- template: 'django-multi-environment/azure-pipelines.yml'
-- template: 'flask-basic/azure-pipelines.yml'
-- template: 'library-basic/azure-pipelines.yml'
-- template: 'library-flit/azure-pipelines.yml'
+name: 'my pipeline'
+stages:
+    - stage: test
+      jobs:
+          - job: myJob
+            steps:
+                - script: | 
+                    echo 'aaaaaaa'
+                  displayName: 'ececute script'
+                - task: UsePythonVersion@0
+                  displayName: 'use python 3.0'
+                  inputs:
+                    versionSpec: '3.6'
+                - task: PythonScript@0
+                  displayName: 'execute python'
+                  inputs:
+                      scriptSource: inline
+                      script: | 
+                        print('python app...')
+                        
